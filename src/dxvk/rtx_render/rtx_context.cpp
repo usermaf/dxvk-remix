@@ -1098,7 +1098,9 @@ namespace dxvk {
 
     constants.volumeClampedReprojectionConfidencePenalty = RtxOptions::Get()->getVolumetricClampedReprojectionConfidencePenalty();
 
-    constants.skyBrightness = RtxOptions::Get()->skyBrightness();
+    constants.skyRed = RtxOptions::Get()->skyRed();
+    constants.skyRed = RtxOptions::Get()->skyGreen();
+    constants.skyRed = RtxOptions::Get()->skyBlue();
     constants.isLastCompositeOutputValid = rtOutput.m_lastCompositeOutput.matchesWriteFrameIdx(frameIdx - 1);
     constants.isZUp = RtxOptions::Get()->isZUp();
     constants.enableCullingSecondaryRays = RtxOptions::Get()->enableCullingInSecondaryRays();
