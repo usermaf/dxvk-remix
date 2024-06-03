@@ -1773,7 +1773,7 @@ void geometryPSRResolverVertex(
     else
     {
       // Output radiance from sky probe
-      emissiveRadiance += cb.skyBrightness * SkyProbe.Sample(ray.direction);
+      emissiveRadiance += vec3(cb.skyRed,cb.skyGreen,cb.skyBlue) * SkyProbe.Sample(ray.direction);
     }
   }
 
