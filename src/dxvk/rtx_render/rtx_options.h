@@ -893,7 +893,9 @@ namespace dxvk {
                "As such, this option should generally always be enabled when rendering with ray portals in the scene to have good denoising quality.");
     RTX_OPTION("rtx", bool, resetDenoiserHistoryOnSettingsChange, false, "");
 
-    RTX_OPTION("rtx", float, skyBrightness, 1.f, "");
+    RTX_OPTION("rtx", float, skyRed, 1.f, "");
+    RTX_OPTION("rtx", float, skyGreen, 1.f, "");
+    RTX_OPTION("rtx", float, skyBlue, 1.f, "");
     RTX_OPTION("rtx", bool, skyForceHDR, false, "By default sky will be rasterized in the color format used by the game. Set the checkbox to force sky to be rasterized in HDR intermediate format. This may be important when sky textures replaced with HDR textures.");
     RTX_OPTION("rtx", uint32_t, skyProbeSide, 1024, "");
     RTX_OPTION_FLAG("rtx", uint32_t, skyUiDrawcallCount, 0, RtxOptionFlags::NoSave, "");
