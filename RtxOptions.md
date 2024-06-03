@@ -579,7 +579,9 @@ Tables below enumerate all the options and their defaults set by RTX Remix. Note
 |rtx.skipDrawCallsPostRTXInjection|bool|False|Ignores all draw calls recorded after RTX Injection, the location of which varies but is currently based on when tagged UI textures begin to draw\.|
 |rtx.skipObjectsWithUnknownCamera|bool|False||
 |rtx.skyAutoDetect|int|0|Automatically tag sky draw calls using various heuristics\.<br>0 = None<br>1 = CameraPosition \- assume the first seen camera position is a sky camera\.<br>2 = CameraPositionAndDepthFlags \- assume the first seen camera position is a sky camera, if its draw call's depth test is disabled\. If it's enabled, assume no sky camera\.<br>Note: if all draw calls are marked as sky, then assume that there's no sky camera at all\.|
-|rtx.skyBrightness|float3|1, 1, 1||
+|rtx.skyRed|float|1||
+|rtx.skyGreen|float|1||
+|rtx.skyBlue|float|1||
 |rtx.skyDrawcallIdThreshold|int|0|It's common in games to render the skybox first, and so, this value provides a simple mechanism to identify those early draw calls that are untextured \(textured draw calls can still use the Sky Textures functionality\.|
 |rtx.skyForceHDR|bool|False|By default sky will be rasterized in the color format used by the game\. Set the checkbox to force sky to be rasterized in HDR intermediate format\. This may be important when sky textures replaced with HDR textures\.|
 |rtx.skyMinZThreshold|float|1|If a draw call's viewport has min depth greater than or equal to this threshold, then assume that it's a sky\.|
