@@ -1535,6 +1535,7 @@ namespace dxvk {
   // Some games don't even call them.
 
   HRESULT STDMETHODCALLTYPE D3D9DeviceEx::BeginScene() {
+
 void on_begin_scene()
 {
     if (const auto im = imgui::get(); im)
@@ -1568,6 +1569,7 @@ void on_begin_scene()
         }
     }
 }
+
     ScopedCpuProfileZone();
     D3D9DeviceLock lock = LockDevice();
 
