@@ -1535,6 +1535,39 @@ namespace dxvk {
   // Some games don't even call them.
 
   HRESULT STDMETHODCALLTYPE D3D9DeviceEx::BeginScene() {
+void on_begin_scene()
+{
+    if (const auto im = imgui::get(); im)
+    {
+        if (im->m_dbg_use_fake_camera)
+        {
+            D3DXMATRIX rotation, translation, view_matrix, proj_matrix;
+
+            D3DXMatrixRotationYawPitchRoll(&rotation,
+                D3DXToRadian(im->m_dbg_camera_yaw),        // Yaw in radians
+                D3DXToRadian(im->m_dbg_camera_pitch),    // Pitch in radians
+                0.0f);                                    // No roll for simplicity
+
+            D3DXMatrixTranslation(&translation,
+                -im->m_dbg_camera_pos[0],                // Negate for camera (moves world opposite)
+                -im->m_dbg_camera_pos[1],
+                -im->m_dbg_camera_pos[2]);
+
+            D3DXMatrixMultiply(&view_matrix, &rotation, &translation);
+
+            // Construct projection matrix
+            D3DXMatrixPerspectiveFovLH(&proj_matrix,
+                D3DXToRadian(im->m_dbg_camera_fov),        // FOV in radians
+                im->m_dbg_camera_aspect,
+                im->m_dbg_camera_near_plane,
+                im->m_dbg_camera_far_plane);
+
+            shared::globals::d3d_device->SetTransform(D3DTS_WORLD, &shared::globals::IDENTITY);
+            shared::globals::d3d_device->SetTransform(D3DTS_VIEW, &view_matrix);
+            shared::globals::d3d_device->SetTransform(D3DTS_PROJECTION, &proj_matrix);
+        }
+    }
+}
     ScopedCpuProfileZone();
     D3D9DeviceLock lock = LockDevice();
 
